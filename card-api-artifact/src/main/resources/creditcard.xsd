@@ -1,0 +1,54 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://card.soap"
+            xmlns:tns="http://card.soap"
+            elementFormDefault="qualified">
+
+<!--    entity-->
+    <xsd:complexType name="creditCard">
+        <xsd:sequence>
+            <xsd:element name="cardNumber" type="xsd:long" />
+            <xsd:element name="cardCvv" type="xsd:int"/>
+            <xsd:element name="cardExpiry" type="xsd:date"/>
+            <xsd:element name="cardHolder" type="xsd:string"/>
+            <xsd:element name="cardLimit" type="xsd:int"/>
+            <xsd:element name="cardUsage" type="xsd:int"/>
+            <xsd:element name="cardAvailable" type="xsd:int"/>
+            <xsd:element name="cardStatus" type="xsd:boolean"/>
+            <xsd:element name="cardPin" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+<!--    operations-->
+<!--    block-->
+    <xsd:element name="blockCardRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="cardNumber" type="xsd:long"/>
+                <xsd:element name="cardPin" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="blockCardResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="message" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="swipeCardRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="creditCard" type="tns:creditCard"/>
+                <xsd:element name="purchase" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="swipeCardResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="creditCard" type="tns:creditCard"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
