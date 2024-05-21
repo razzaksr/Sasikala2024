@@ -3,12 +3,15 @@ package sasikala.explore.service.cardapiartifact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import sasikala.explore.security.entities.CreditCard;
 import sasikala.explore.security.remotes.CardRepository;
+import sasikala.explore.service.cardapiartifact.authorize.Officials;
+import sasikala.explore.service.cardapiartifact.authorize.OfficialsService;
 
 import java.util.List;
 
@@ -17,6 +20,18 @@ import java.util.List;
 public class CardRestController {
     @Autowired
     CardRepository cardRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    OfficialsService officialsService;
+
+    @PostMapping("/signup")
+    public Officials register(@RequestBody Officials officials){
+        officials.setPassword(passwordEncoder.encode(officials.getPassword()));
+        return officialsService.signUP(officials);
+    }
 
     @PostMapping("/")
     public ResponseEntity requestToApprove(@RequestBody CreditCard creditCard){
