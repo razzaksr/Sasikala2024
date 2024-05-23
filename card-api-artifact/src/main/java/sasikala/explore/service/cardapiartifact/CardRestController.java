@@ -3,6 +3,7 @@ package sasikala.explore.service.cardapiartifact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,11 @@ public class CardRestController {
     @Autowired
     OfficialsService officialsService;
 
+    @GetMapping("/dashboard")
+    public ResponseEntity dash(){
+        return ResponseEntity.ok().body("Logged successfully");
+    }
+
     @PostMapping("/signup")
     public Officials register(@RequestBody Officials officials){
         officials.setPassword(passwordEncoder.encode(officials.getPassword()));
@@ -34,6 +40,7 @@ public class CardRestController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasAuthority('manager')")
     public ResponseEntity requestToApprove(@RequestBody CreditCard creditCard){
         CreditCard card = cardRepository.approve(creditCard);
         return ResponseEntity.ok().body(card);

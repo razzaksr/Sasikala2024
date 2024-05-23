@@ -3,6 +3,7 @@ package sasikala.explore.service.cardapiartifact;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -34,6 +35,8 @@ public class CardSoapEndpoint {
         return response;
     }
 
+//    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','manager')")
     @PayloadRoot(namespace = url,localPart = "blockCardRequest")
     @ResponsePayload
     public BlockCardResponse blockingCard(@RequestPayload BlockCardRequest blockCardRequest){

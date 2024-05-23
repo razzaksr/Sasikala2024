@@ -30,6 +30,16 @@ public class OfficialsService implements UserDetailsService {
         return officials;
     }
 
+    public void updateAttempt(Officials officials){
+        jdbcTemplate.update("update mybank_officials set attempts=? where username=?",
+                new Object[]{officials.getAttempts(),officials.getUsername()});
+    }
+
+    public void updateStatus(Officials officials){
+        jdbcTemplate.update("update mybank_officials set status=? where username=?",
+                new Object[]{officials.getStatus(),officials.getUsername()});
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Officials officials = getByUsername(username);
