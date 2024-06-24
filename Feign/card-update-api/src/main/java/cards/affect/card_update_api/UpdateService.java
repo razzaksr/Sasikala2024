@@ -4,10 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UpdateService implements UpdateRepo{
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    FeignInterceptor feignInterceptor;
+
+    @Override
+    public CreditCard fetchByCardNumber(long cardNumber) {
+        List<CreditCard> everything = feignInterceptor.getFromService();
+        CreditCard matched = everything.stream().filter(card -> {return card.getCardNumber()==cardNumber;}).collect(Collectors.toList()).get(0);
+        return matched;
+    }
 
     @Override
     public CreditCard approve(CreditCard creditCard) {

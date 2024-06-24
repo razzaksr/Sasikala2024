@@ -8,6 +8,11 @@ public class UpdateController {
     @Autowired
     private UpdateRepo updateRepo;
 
+    @GetMapping(value = "/{cardNumber}",produces = "application/xml")
+    public CreditCard selectOne(@PathVariable("cardNumber") long cardNumber){
+        return updateRepo.fetchByCardNumber(cardNumber);
+    }
+
     @PostMapping("/")
     public CreditCard newOne(@RequestBody CreditCard card){
         return updateRepo.approve(card);
