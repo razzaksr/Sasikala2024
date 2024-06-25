@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="card-update-api" />
         <module name="card-retrieval-api" />
+        <module name="card-registry-server" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="card-registry-server" options="-parameters" />
       <module name="card-retrieval-api" options="-parameters" />
       <module name="card-update-api" options="-parameters" />
     </option>

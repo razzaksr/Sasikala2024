@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/card-update-api/pom.xml" />
         <option value="$PROJECT_DIR$/card-retrieval-api/pom.xml" />
+        <option value="$PROJECT_DIR$/card-registry-server/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

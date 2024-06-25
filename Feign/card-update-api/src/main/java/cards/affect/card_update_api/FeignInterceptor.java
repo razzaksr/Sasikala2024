@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(url = "http://localhost:8078",name = "Feign-Interceptor")
+//@FeignClient(url = "http://localhost:8078",name = "Feign-Interceptor")
+@FeignClient(name="Feign-Interceptor")
 public interface FeignInterceptor {
     @GetMapping("/all")
     List<CreditCard> getFromService();
