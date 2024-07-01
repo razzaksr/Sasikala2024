@@ -7,7 +7,14 @@
         <option value="$PROJECT_DIR$/card-update-api/pom.xml" />
         <option value="$PROJECT_DIR$/card-retrieval-api/pom.xml" />
         <option value="$PROJECT_DIR$/card-registry-server/pom.xml" />
+        <option value="$PROJECT_DIR$/card-gateway-api/pom.xml" />
+        <option value="$PROJECT_DIR$/cards-gateway-api/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/card-gateway-api/pom.xml" />
+      </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>

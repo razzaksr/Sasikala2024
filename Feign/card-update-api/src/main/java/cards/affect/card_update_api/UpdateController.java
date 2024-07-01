@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/update")
 public class UpdateController {
     @Autowired
     private UpdateRepo updateRepo;
